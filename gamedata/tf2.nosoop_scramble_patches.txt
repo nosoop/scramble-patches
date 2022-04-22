@@ -1,0 +1,72 @@
+"Games"
+{
+	"tf"
+	{
+		"MemPatches"
+		{
+			"CTFPlayer::ModifyOrAppendCriteria()::DisableHalloweenThrillerTaunt"
+			{
+				"signature"			"CTFPlayer::ModifyOrAppendCriteria()"
+				"linux"
+				{
+					// convert JA to a JO (never branch)
+					"offset"		"A2Ch"
+					"verify"		"\x0F\x87"
+					"patch"			"\x0F\x80"
+				}
+				"windows"
+				{
+					// convert JBE to an unconditional JMP (always branch)
+					"offset"		"C1Ch"
+					"verify"		"\x76"
+					"patch"			"\xEB"
+				}
+			}
+			"Host_AccumulateTime()::BypassWindowsCheatCheck"
+			{
+				"windows"
+				{
+					// patches to an unconditional jump
+					"signature"		"Host_AccumulateTime()"
+					"offset"		"113h"
+					"verify"		"\x75\x1B"
+					"patch"			"\xEB"
+				}
+			}
+			"PackRatios::WindowsFix"
+			{
+				"signature"		"PackRatios"
+				"windows"
+				{
+					// changes the small pack ratio scalar from 0x3E4CCCCD to 0x3E4CCCCC
+					// 0x3E4CCCCD = 0.20000000298023224 : has issues with rounding precision on double-precision multiply operations (which is what MSVC does)
+					// 0x3E4CCCCC = 0.19999998807907104
+					// source: https://babbage.cs.qc.cuny.edu/ieee-754.old/32bit.html
+					// the game rounds the result up, so having it be slightly less than 0.2 is preferable
+					"offset"	"0h"
+					"patch"		"\xCC\xCC\x4C\x3E\x00\x00\x00\x3F\x00\x00\x80\x3F"
+				}
+			}
+		}
+		"Signatures"
+		{
+			"CTFPlayer::ModifyOrAppendCriteria()"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9CTFPlayer22ModifyOrAppendCriteriaER14AI_CriteriaSet"
+				"windows"	"\x53\x8B\xDC\x83\xEC\x08\x83\xE4\xF0\x83\xC4\x04\x55\x8B\x6B\x04\x89\x6C\x24\x04\x8B\xEC\x81\xEC\x28\x01\x00\x00\x56\x57\x8B\x7B\x08"
+			}
+			"Host_AccumulateTime()"
+			{
+				"library"	"engine"
+				"windows"	"\x55\x8B\xEC\xD9\x45\x08\x83\xEC\x0C"
+			}
+			"PackRatios"
+			{
+				// just grab the array from memory lol
+				"library"	"server"
+				"windows"	"\xCD\xCC\x4C\x3E\x00\x00\x00\x3F\x00\x00\x80\x3F"
+			}
+		}
+	}
+}

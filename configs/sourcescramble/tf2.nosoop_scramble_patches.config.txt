@@ -1,0 +1,16 @@
+/**
+ * These are a collection of patches for Source Scramble.
+ */
+"Patches"
+{
+	// Fixes small ammo packs granting 41 ammo on Windows servers
+	// See https://youtu.be/QzZoo1yAQag
+	"tf2.nosoop_scramble_patches"		"PackRatios::WindowsFix"
+	
+	// Allow modifications of host_timescale without enabling cheats on Windows servers
+	// (This doesn't fix the entirety of host_timescale, but matches the behavior on Linux.)
+	"tf2.nosoop_scramble_patches"		"Host_AccumulateTime()::BypassWindowsCheatCheck"
+	
+	// Prevents the Thriller taunt from being active during Halloween
+	"tf2.nosoop_scramble_patches"		"CTFPlayer::ModifyOrAppendCriteria()::DisableHalloweenThrillerTaunt"
+}
