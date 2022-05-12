@@ -13,4 +13,7 @@
 	
 	// Prevents the Thriller taunt from being active during Halloween
 	"tf2.nosoop_scramble_patches"		"CTFPlayer::ModifyOrAppendCriteria()::DisableHalloweenThrillerTaunt"
+	
+	// Disables variation in fall damage
+	"tf2.nosoop_scramble_patches"		"CTFGameRules::FlPlayerFallDamage()::DisableFallDamageVariance"
 }

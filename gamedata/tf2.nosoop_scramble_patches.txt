@@ -4,6 +4,32 @@
 	{
 		"MemPatches"
 		{
+			"CTFGameRules::FlPlayerFallDamage()::DisableFallDamageVariance"
+			{
+				// populate random scalar with 1.0f
+				"signature"			"CTFGameRules::FlPlayerFallDamage()"
+				"linux"
+				{
+					"offset"		"D5h"
+					
+					// mov dword ptr [esp+8], 1.2f; mov dword ptr [esp+4], 0.8f
+					"verify"		"\xC7\x44\x24\x08\x9A\x99\x99\x3F\xC7\x44\x24\x04\xCD\xCC\x4C\x3F"
+					
+					// replace immediates with 1.0f
+					"patch"			"\xC7\x44\x24\x08\x00\x00\x80\x3F\xC7\x44\x24\x04\x00\x00\x80\x3F"
+				}
+				"windows"
+				{
+					// windows performs non-immediate loads, so we replace the instructions with immediate loads instead
+					"offset"		"D7h"
+					
+					// fld 1.2; fstp [esp+0x4]; fld 0.8; fstp [esp];
+					"verify"		"\xD9\x05\x2A\x2A\x2A\x2A\xD9\x5C\x24\x04\xD9\x05\x2A\x2A\x2A\x2A\xD9\x1C\x24"
+					
+					// mov dword ptr [esp+0x4], 1.0f; mov dword ptr [esp], 1.0f; nop ...;
+					"patch"			"\xC7\x44\x24\x04\x00\x00\x80\x3F\xC7\x04\x24\x00\x00\x80\x3F\x90\x90\x90\x90"
+				}
+			}
 			"CTFPlayer::ModifyOrAppendCriteria()::DisableHalloweenThrillerTaunt"
 			{
 				"signature"			"CTFPlayer::ModifyOrAppendCriteria()"
@@ -50,6 +76,13 @@
 		}
 		"Signatures"
 		{
+			"CTFGameRules::FlPlayerFallDamage()"
+			{
+				// unique xref string "cancel_falling_damage"
+				"library"	"server"
+				"linux"		"@_ZN12CTFGameRules18FlPlayerFallDamageEP11CBasePlayer"
+				"windows"	"\x55\x8B\xEC\x51\x53\x56\x8B\x75\x08\x8B\xD9\x85\xF6\x0F\x84"
+			}
 			"CTFPlayer::ModifyOrAppendCriteria()"
 			{
 				"library"	"server"
