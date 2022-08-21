@@ -6,9 +6,11 @@ Requires [Source Scramble](https://github.com/nosoop/SMExt-SourceScramble) and i
 plugin.
 
 `tf2.nosoop_scramble_patches.config.txt` goes into `addons/sourcemod/configs/sourcescramble`
-and `tf2.nosoop_scramble_patches.txt` goes into `addons/sourcemod/gamedata`.  You will likely
-want to review `tf2.nosoop_scramble_patches.config.txt` and comment out any patches that you
-don't want applied.
+and `tf2.nosoop_scramble_patches.txt` goes into `addons/sourcemod/gamedata`.
+
+You will likely want to review `tf2.nosoop_scramble_patches.config.txt` and comment out any
+patches that you don't want applied.  By default, all patches are enabled, even if not supported
+on the platform.
 
 ## License
 
