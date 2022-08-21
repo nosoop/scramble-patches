@@ -30,6 +30,22 @@
 					"patch"			"\xC7\x44\x24\x04\x00\x00\x80\x3F\xC7\x04\x24\x00\x00\x80\x3F\x90\x90\x90\x90"
 				}
 			}
+			"CTFPlayer::GetLoadoutItem()::EnableItemRestrictions"
+			{
+				"signature"			"CTFPlayer::GetLoadoutItem()"
+				"linux"
+				{
+					"offset"		"F0h"
+					"verify"		"\x74\xC4"
+					"patch"			"\x90\x90"
+				}
+				"windows"
+				{
+					"offset"		"A7h"
+					"verify"		"\x74\x38"
+					"patch"			"\x90\x90"
+				}
+			}
 			"CTFPlayer::ModifyOrAppendCriteria()::DisableHalloweenThrillerTaunt"
 			{
 				"signature"			"CTFPlayer::ModifyOrAppendCriteria()"
@@ -82,6 +98,11 @@
 				"library"	"server"
 				"linux"		"@_ZN12CTFGameRules18FlPlayerFallDamageEP11CBasePlayer"
 				"windows"	"\x55\x8B\xEC\x51\x53\x56\x8B\x75\x08\x8B\xD9\x85\xF6\x0F\x84"
+			}
+			"CTFPlayer::GetLoadoutItem()"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9CTFPlayer14GetLoadoutItemEiib"
 			}
 			"CTFPlayer::ModifyOrAppendCriteria()"
 			{

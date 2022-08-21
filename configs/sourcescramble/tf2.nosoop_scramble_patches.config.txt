@@ -16,4 +16,8 @@
 	
 	// Disables variation in fall damage
 	"tf2.nosoop_scramble_patches"		"CTFGameRules::FlPlayerFallDamage()::DisableFallDamageVariance"
+	
+	// Patches the tournament mode check so items can be disabled if marked as such in its item definition
+	// (This is not enough for loading the item restriction file.)
+	"tf2.nosoop_scramble_patches"		"CTFPlayer::GetLoadoutItem()::EnableItemRestrictions"
 }
