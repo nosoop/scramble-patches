@@ -20,4 +20,7 @@
 	// Patches the tournament mode check so items can be disabled if marked as such in its item definition
 	// (This is not enough for loading the item restriction file.)
 	"tf2.nosoop_scramble_patches"		"CTFPlayer::GetLoadoutItem()::EnableItemRestrictions"
+	
+	// Raise particle effect limit
+	"tf2.nosoop_scramble_patches"		"CServerGameDLL::CreateNetworkStringTables()::ParticleEffects"
 }
