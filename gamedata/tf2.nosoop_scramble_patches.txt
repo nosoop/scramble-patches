@@ -4,20 +4,6 @@
 	{
 		"MemPatches"
 		{
-			"CServerGameDLL::CreateNetworkStringTables()::ParticleEffects"
-			{
-				"signature"		"CServerGameDLL::CreateNetworkStringTables()"
-				"linux"
-				{
-					"offset"	"21h"
-				}
-				"windows"
-				{
-					"offset"	"0Bh"
-				}
-				"verify"		"\x00\x10"
-				"patch"			"\x00\x80"
-			}
 			"CTFGameRules::FlPlayerFallDamage()::DisableFallDamageVariance"
 			{
 				// populate random scalar with 1.0f
@@ -106,13 +92,6 @@
 		}
 		"Signatures"
 		{
-			"CServerGameDLL::CreateNetworkStringTables()"
-			{
-				// contains unique string "ParticleEffectNames"
-				"library"	"server"
-				"linux"		"@_ZN14CServerGameDLL25CreateNetworkStringTablesEv"
-				"windows"	"\x8B\x0D\x2A\x2A\x2A\x2A\x6A\x00\x6A\x00\x68\x00\x2A\x00\x00"
-			}
 			"CTFGameRules::FlPlayerFallDamage()"
 			{
 				// unique xref string "cancel_falling_damage"
