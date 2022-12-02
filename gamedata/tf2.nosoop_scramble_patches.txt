@@ -52,15 +52,15 @@
 				"linux"
 				{
 					// convert JA to a JO (never branch)
-					"offset"		"A2Ch"
+					"offset"		"A3Ch"
 					"verify"		"\x0F\x87"
 					"patch"			"\x0F\x80"
 				}
 				"windows"
 				{
 					// convert JBE to an unconditional JMP (always branch)
-					"offset"		"C1Ch"
-					"verify"		"\x76"
+					"offset"		"C20h"
+					"verify"		"\x76\x2A"
 					"patch"			"\xEB"
 				}
 			}
