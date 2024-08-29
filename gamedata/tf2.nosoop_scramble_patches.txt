@@ -52,14 +52,14 @@
 				"linux"
 				{
 					// convert JA to a JO (never branch)
-					"offset"		"A3Ch"
-					"verify"		"\x0F\x87"
-					"patch"			"\x0F\x80"
+					"offset"		"151Bh"
+					"verify"		"\x77"
+					"patch"			"\x70"
 				}
 				"windows"
 				{
 					// convert JBE to an unconditional JMP (always branch)
-					"offset"		"C20h"
+					"offset"		"B77h"
 					"verify"		"\x76\x2A"
 					"patch"			"\xEB"
 				}
@@ -70,7 +70,7 @@
 				{
 					// patches to an unconditional jump
 					"signature"		"Host_AccumulateTime()"
-					"offset"		"113h"
+					"offset"		"FFh"
 					"verify"		"\x75\x1B"
 					"patch"			"\xEB"
 				}
@@ -97,7 +97,7 @@
 				// unique xref string "cancel_falling_damage"
 				"library"	"server"
 				"linux"		"@_ZN12CTFGameRules18FlPlayerFallDamageEP11CBasePlayer"
-				"windows"	"\x55\x8B\xEC\x51\x53\x56\x8B\x75\x08\x8B\xD9\x85\xF6\x0F\x84"
+				"windows"	"\x55\x8B\xEC\x51\x53\x56\x8B\x75\x08\x8B\xD9\x57\x85\xF6\x0F\x84\x2A\x2A\x2A\x2A\x8B\x06"
 			}
 			"CTFPlayer::GetLoadoutItem()"
 			{
@@ -108,7 +108,7 @@
 			{
 				"library"	"server"
 				"linux"		"@_ZN9CTFPlayer22ModifyOrAppendCriteriaER14AI_CriteriaSet"
-				"windows"	"\x53\x8B\xDC\x83\xEC\x08\x83\xE4\xF0\x83\xC4\x04\x55\x8B\x6B\x04\x89\x6C\x24\x04\x8B\xEC\x81\xEC\x28\x01\x00\x00\x56\x57\x8B\x7B\x08"
+				"windows"	"\x53\x8B\xDC\x83\xEC\x08\x83\xE4\xF0\x83\xC4\x04\x55\x8B\x6B\x04\x89\x6C\x24\x04\x8B\xEC\x81\xEC\x18\x01\x00\x00\x56\x57\x8B\x7B\x08"
 			}
 			"Host_AccumulateTime()"
 			{
